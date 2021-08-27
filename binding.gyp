@@ -63,14 +63,7 @@
               "destination": "<(PRODUCT_DIR)",
               "files": [
                 "<(pulsar_cpp_dir)\\build\lib\Release\pulsar.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\libcurl.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\libprotobuf.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\libssl-1_1-x64.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\libcrypto-1_1-x64.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\dl.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\snappy.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\zlib1.dll",
-                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\zstd.dll",
+                "<(pulsar_cpp_dir)\\vcpkg_installed\\x64-windows\\bin\\*.dll",
               ]
             }
           ]
