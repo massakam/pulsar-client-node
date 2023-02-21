@@ -58,10 +58,15 @@
             "<!@(node -p \"require('node-addon-api').gyp\")"
           ],
           "include_dirs": [
-            "pkg/mac/build-pulsar/install/include"
+            "<(module_root_dir)/pkg/mac/build-pulsar/install/include",
+            "<!(brew --prefix)/include"
+          ],
+          "library_dirs": [
+            "<(module_root_dir)/pkg/mac/build-pulsar/install/lib",
+            "<!(brew --prefix)/lib"
           ],
           "libraries": [
-            "../pkg/mac/build-pulsar/install/lib/libpulsarwithdeps.a"
+            "-lpulsarwithdeps"
           ],
         }],
         ['OS=="win"', {
@@ -75,10 +80,13 @@
             },
           },
           "include_dirs": [
-            "pkg\\windows\\pulsar-cpp\\include",
+            "<(module_root_dir)\\pkg\\windows\\pulsar-cpp\\include"
+          ],
+          "library_dirs": [
+            "<(module_root_dir)\\pkg\\windows\\pulsar-cpp\\lib"
           ],
           "libraries": [
-            "..\\pkg\\windows\\pulsar-cpp\\lib\\pulsarWithDeps.lib"
+            "-lpulsarWithDeps"
           ],
           "dependencies": [
             "<!(node -p \"require('node-addon-api').gyp\")"
@@ -89,10 +97,13 @@
             "<!@(node -p \"require('node-addon-api').gyp\")"
           ],
           "include_dirs": [
-             "pkg/linux/pulsar-cpp/include"
+            "<(module_root_dir)/pkg/linux/pulsar-cpp/include"
+          ],
+          "library_dirs": [
+            "<(module_root_dir)/pkg/linux/pulsar-cpp/lib"
           ],
           "libraries": [
-             "../pkg/linux/pulsar-cpp/lib/libpulsarwithdeps.a"
+            "-lpulsarwithdeps"
           ],
         }]
       ]
