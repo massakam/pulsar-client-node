@@ -66,7 +66,7 @@
             "<!(brew --prefix)/lib"
           ],
           "libraries": [
-            "-lpulsarwithdeps"
+            "-lpulsar<!(test -e <(module_root_dir)/pkg/mac/build-pulsar/install/lib/libpulsarwithdeps.a && echo withdeps || :)"
           ],
         }],
         ['OS=="win"', {
