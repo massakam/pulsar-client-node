@@ -57,16 +57,25 @@
           "dependencies": [
             "<!@(node -p \"require('node-addon-api').gyp\")"
           ],
-          "include_dirs": [
-            "<(module_root_dir)/pkg/mac/build-pulsar/install/include",
-            "<!(brew --prefix)/include"
-          ],
-          "library_dirs": [
-            "<(module_root_dir)/pkg/mac/build-pulsar/install/lib",
-            "<!(brew --prefix)/lib"
-          ],
-          "libraries": [
-            "-lpulsar<!(test -e <(module_root_dir)/pkg/mac/build-pulsar/install/lib/libpulsarwithdeps.a && echo withdeps || :)"
+          "conditions": [
+            ['"<!(test -e <(module_root_dir)/pkg/mac/build-pulsar/install && echo true || echo false)"=="true"', {
+              "include_dirs": [
+                "<(module_root_dir)/pkg/mac/build-pulsar/install/include"
+              ],
+              "libraries": [
+                "<(module_root_dir)/pkg/mac/build-pulsar/install/lib/libpulsarwithdeps.a"
+              ]
+            }, {
+              "include_dirs": [
+                "<!(brew --prefix)/include"
+              ],
+              "library_dirs": [
+                "<!(brew --prefix)/lib"
+              ],
+              "libraries": [
+                "-lpulsar"
+              ]
+            }]
           ],
         }],
         ['OS=="win"', {
@@ -82,11 +91,8 @@
           "include_dirs": [
             "<(module_root_dir)\\pkg\\windows\\pulsar-cpp\\include"
           ],
-          "library_dirs": [
-            "<(module_root_dir)\\pkg\\windows\\pulsar-cpp\\lib"
-          ],
           "libraries": [
-            "-lpulsarWithDeps"
+            "<(module_root_dir)\\pkg\\windows\\pulsar-cpp\\lib\\pulsarWithDeps.lib"
           ],
           "dependencies": [
             "<!(node -p \"require('node-addon-api').gyp\")"
@@ -96,14 +102,19 @@
           "dependencies": [
             "<!@(node -p \"require('node-addon-api').gyp\")"
           ],
-          "include_dirs": [
-            "<(module_root_dir)/pkg/linux/pulsar-cpp/include"
-          ],
-          "library_dirs": [
-            "<(module_root_dir)/pkg/linux/pulsar-cpp/lib"
-          ],
-          "libraries": [
-            "-lpulsarwithdeps"
+          "conditions": [
+            ['"<!(test -e <(module_root_dir)/pkg/linux/pulsar-cpp && echo true || echo false)"=="true"', {
+              "include_dirs": [
+                "<(module_root_dir)/pkg/linux/pulsar-cpp/include"
+              ],
+              "libraries": [
+                "<(module_root_dir)/pkg/linux/pulsar-cpp/lib/libpulsarwithdeps.a"
+              ]
+            }, {
+              "libraries": [
+                "-lpulsar"
+              ]
+            }]
           ],
         }]
       ]
