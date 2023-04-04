@@ -24,6 +24,7 @@
       "cflags_cc": ["-std=gnu++11"],
       "cflags!": ["-fno-exceptions"],
       "cflags_cc!": ["-fno-exceptions", "-std=gnu++14", "-std=gnu++17"],
+      "ldflags": ["-Wl,--exclude-libs=ALL"],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")",
       ],
@@ -59,6 +60,11 @@
           ],
           "conditions": [
             ['"<!(test -e <(module_root_dir)/pkg/mac/build-pulsar/install && echo true || echo false)"=="true"', {
+              "xcode_settings": {
+                "OTHER_LDFLAGS": [
+                  "-Wl,-load_hidden <(module_root_dir)/pkg/mac/build-pulsar/install/lib/libpulsarwithdeps.a"
+                ]
+              },
               "include_dirs": [
                 "<(module_root_dir)/pkg/mac/build-pulsar/install/include"
               ],
