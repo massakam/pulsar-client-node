@@ -15,5 +15,44 @@
 # specific language governing permissions and limitations
 # under the License.
 
-examples
-perf
+headerPath = "Apache-2.0-ASF.txt"
+
+excludes = [
+    "NOTICE",
+    "build/*",
+    "lib/*",
+    "report/*",
+    "node_modules/*",
+    "pkg/linux/pulsar-cpp/*",
+    "pkg/mac/build-pulsar/*",
+    "*.json",
+    "*.txt",
+    "*.pem",
+    "*.key",
+    "*.crt",
+    "*.tgz",
+    "*.tar.gz",
+]
+
+[mapping.JAVADOC_STYLE]
+extensions = [
+    "c",
+    "cc",
+    "cpp",
+    "h",
+    "hpp",
+    "js",
+    "ts",
+]
+
+[mapping.SCRIPT_STYLE]
+filenames = [
+    ".eslintignore",
+    ".clang-format",
+    "Dockerfile_linux_glibc",
+    "Dockerfile_linux_musl",
+]
+extensions = [
+    "gyp",
+    "conf",
+]
